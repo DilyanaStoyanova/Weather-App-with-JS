@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="weather-card">
-      <div class="date-details"></div>
+      <div class="date-time"></div>
       <div class="search">
         <input
           class="search-field"
@@ -30,10 +30,14 @@
           <i class="fas fa-search search-icon"></i>
         </button>
       </div>
-      <img class="weather-icon" src="img/01d.svg" alt="Weather icon" />
-      <p class="alert">Strong wind!</p>
-      <h1 class="temp">22&deg;C</h1>
-      <h2 class="city">Varna</h2>
+      <div class="main">
+        <img class="weather-icon" src="img/03d.svg" alt="Weather icon" />
+        <div class="main-content">
+          <p class="alert">Strong wind!</p>
+          <h1 class="temp">22&deg;C</h1>
+          <h2 class="city">Varna</h2>
+        </div>
+      </div>
       <div class="features">
         <div class="feature">
           <img src="img/humidity.svg" alt="Humidity icon" />
@@ -44,6 +48,23 @@
           <img src="img/wind-speed.svg" alt="Wind icon" />
           <p class="wind">50 km/h</p>
           <p>Wind speed</p>
+        </div>
+        <div class="feature">
+          <img src="img/pressure.svg" alt="Pressure icon" />
+          <p class="pressure">1000 hPa</p>
+          <p>Wind speed</p>
+        </div>
+      </div>
+      <div class="sun">
+        <div class="sun-position">
+          <img class="sunrise-icon" src="img/sunrise.svg" alt="Sunrise icon" />
+          <p>Sunrise</p>
+          <p class="sunrise-time">07:26</p>
+        </div>
+        <div class="sun-position">
+          <img class="sunset-icon" src="img/sunset.svg" alt="Sunset icon" />
+          <p>Sunset</p>
+          <p class="sunset-time">17:15</p>
         </div>
       </div>
     </div>
