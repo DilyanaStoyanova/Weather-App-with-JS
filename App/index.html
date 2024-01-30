@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="weather-card">
+      <div class="date-details"></div>
+      <div class="search">
+        <input
+          class="search-field"
+          type="text"
+          placeholder="Search city..."
+          required
+        />
+        <button class="search-button">
+          <i class="fas fa-search search-icon"></i>
+        </button>
+      </div>
+      <img class="weather-icon" src="img/01d.svg" alt="Weather icon" />
+      <p class="alert">Strong wind!</p>
+      <h1 class="temp">22&deg;C</h1>
+      <h2 class="city">Varna</h2>
+      <div class="features">
+        <div class="feature">
+          <img src="img/humidity.svg" alt="Humidity icon" />
+          <p class="humidity">50%</p>
+          <p>Humidity</p>
+        </div>
+        <div class="feature">
+          <img src="img/wind-speed.svg" alt="Wind icon" />
+          <p class="wind">50 km/h</p>
+          <p>Wind speed</p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
