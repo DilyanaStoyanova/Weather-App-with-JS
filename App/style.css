@@ -17,10 +17,8 @@ body {
   color: #0f172a;
   box-sizing: border-box;
   height: 100vh;
-  /* background-image: linear-gradient(135deg, #ffe19c, #ffb199); */
   background-image: url(img/main-light.jpg);
   background-repeat: repeat;
-  /* background-size: cover; */
   background-position: center;
   display: flex;
   justify-content: center;
@@ -34,17 +32,28 @@ body {
   align-items: center;
   border-radius: 12px;
   padding: 1.6rem;
-  box-shadow: 0 1.2rem 2.4rem rgb(239, 123, 141, 0.6);
+  position: relative;
+}
+
+.theme {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
 }
 
 .date-time {
-  font-size: 1.6rem;
   color: #0f172a;
-  align-self: flex-end;
+}
+.date {
+  display: inline-block;
+  margin-right: 3.2rem;
 }
 
 .search-field,
-.search-button {
+.search-button,
+.theme {
+  font-size: 2rem;
   border: none;
   border-radius: 12px;
   padding: 0.8rem 2.4rem;
@@ -81,13 +90,18 @@ body {
   gap: 8rem;
 }
 
-.weather-icon {
-  /* background-color: rgba(134, 181, 223, 0.6); */
-  border-radius: 12px;
+.short-desc {
+  text-align: center;
+  font-weight: 700;
 }
 
-.alert {
+.main-content {
+  align-self: center;
+}
+
+.message {
   font-size: 2rem;
+  text-transform: uppercase;
   padding: 0.8rem 1.6rem;
   border-radius: 12px;
   background-color: #fb4570;
@@ -110,15 +124,29 @@ body {
 }
 
 .feature {
-  border-radius: 12px;
   padding: 1.6rem;
-}
-
-.sun {
-  font-size: 1.6rem;
 }
 
 .sun-position {
-  border-radius: 12px;
   padding: 1.6rem;
+}
+
+.popup {
+  display: none;
+  width: 80%;
+  border-radius: 12px;
+  background-color: #fa456f;
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8rem 1.6rem;
+  text-align: center;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+
+.dark {
+  background-image: url(img/main-dark.jpg);
+  color: #fff;
 }
