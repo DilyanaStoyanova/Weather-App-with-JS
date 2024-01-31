@@ -18,7 +18,7 @@ body {
   box-sizing: border-box;
   height: 100vh;
   background-image: url(img/main-light.jpg);
-  background-repeat: repeat;
+  background-repeat: repeat-x;
   background-position: center;
   display: flex;
   justify-content: center;
@@ -31,14 +31,15 @@ body {
   justify-content: space-around;
   align-items: center;
   border-radius: 12px;
-  padding: 1.6rem;
+  padding: 3.2rem;
   position: relative;
 }
 
 .theme {
+  background-color: #fff;
   position: fixed;
-  top: 1rem;
-  left: 1rem;
+  top: 1.6rem;
+  left: 1.6rem;
   cursor: pointer;
 }
 
@@ -61,7 +62,7 @@ body {
 
 .search-field {
   display: inline-block;
-  width: 40rem;
+  width: 32rem;
 }
 
 .search-field:focus {
