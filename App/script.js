@@ -1,9 +1,10 @@
 let date = document.querySelector(".date");
 let time = document.querySelector(".time");
 
-const body = document.querySelector("body");
+const weatherCard = document.querySelector(".weather-card");
 const themeButton = document.querySelector(".theme");
 const searchForm = document.querySelector(".search");
+const content = document.querySelector(".content");
 const searchField = document.querySelector(".search-field");
 const weatherIcon = document.querySelector(".weather-icon");
 const shortDesc = document.querySelector(".short-desc");
@@ -17,18 +18,22 @@ const sunRise = document.querySelector(".sunrise-time");
 const sunSet = document.querySelector(".sunset-time");
 const errorMessage = document.querySelector(".error-message");
 const popup = document.querySelector(".popup");
+const history = document.querySelector(".history");
 
 updateClock();
 
 setInterval(updateClock, 1000);
 
-let cityName = "Varna";
-getWeather();
+let cityName;
+const cities = [];
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  cityName = searchField.value;
+
+  cityName = searchField.value.toLowerCase().trim();
   popup.style.display = "none";
+  content.style.opacity = 100;
+
   getWeather();
 });
 
@@ -45,20 +50,27 @@ async function getWeather() {
 
     const data = await res.json();
 
-    weatherIcon.src = `img/${data.weather[0].icon}.svg`;
+    const name = `${data.name}, ${data.sys.country}`;
+    const msg = data.weather[0].description;
+    const temperature = `${Math.round(data.main.temp)}°C`;
+
+    displayHistory(name, msg, temperature);
+
     shortDesc.textContent = data.weather[0].main;
-    message.textContent = data.weather[0].description;
-    city.textContent = `${data.name}, ${data.sys.country}`;
-    temp.textContent = `${Math.round(data.main.temp)}°C`;
-    humidity.textContent = `${data.main.humidity}%`;
-    wind.textContent = `${data.wind.speed} km/h`;
-    pressure.textContent = `${data.main.pressure} hPa`;
-    sunRise.textContent = parseDate(data.sys.sunrise);
-    sunSet.textContent = parseDate(data.sys.sunset);
+    message.textContent = msg;
+    city.textContent = name;
+    temp.textContent = temperature;
+    weatherIcon.src = `img/${data.weather[0].icon}.svg`;
+    humidity.textContent = `${data.main.humidity.toFixed(0)}%`;
+    wind.textContent = `${data.wind.speed.toFixed(0)} km/h`;
+    pressure.textContent = `${data.main.pressure.toFixed(0)} hPa`;
+    sunRise.textContent = formattedDate(data.sys.sunrise);
+    sunSet.textContent = formattedDate(data.sys.sunset);
 
     searchField.value = "";
   } catch (error) {
     popup.style.display = "block";
+    content.style.opacity = 0;
     errorMessage.textContent = `${cityName} ${error.message}. Please try again...`;
   }
 }
@@ -66,31 +78,36 @@ async function getWeather() {
 function updateClock() {
   const now = new Date();
 
-  const hours = stringDate(now.getHours());
-  const minutes = stringDate(now.getMinutes());
-  const seconds = stringDate(now.getSeconds());
+  const hours = `${now.getHours()}`.padStart(2, 0);
+  const minutes = `${now.getMinutes()}`.padStart(2, 0);
+  const seconds = `${now.getSeconds()}`.padStart(2, 0);
 
   date.textContent = now.toDateString();
   time.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
 themeButton.addEventListener("click", () => {
-  body.classList.toggle("dark");
-  if (body.classList.contains("dark")) {
+  weatherCard.classList.toggle("dark");
+  if (weatherCard.classList.contains("dark")) {
     themeButton.innerHTML = `<i class="far fa-sun"></i>`;
   } else {
     themeButton.innerHTML = `<i class="fas fa-moon"></i>`;
   }
 });
 
-function parseDate(data) {
-  const hours = stringDate(new Date(parseInt(data * 1000)).getHours());
-
-  const minutes = stringDate(new Date(parseInt(data * 1000)).getMinutes());
-
-  return `${hours}:${minutes}`;
+function displayHistory(name, message, temperature) {
+  const html = `
+  <li>
+  &rarr; ${name}, ${temperature} ${message}
+  </li>
+  `;
+  history.insertAdjacentHTML("afterbegin", html);
 }
 
-function stringDate(data) {
-  return data.toString().padStart(2, "0");
+function formattedDate(data) {
+  const hours = `${new Date(data * 1000).getHours()}`.padStart(2, 0);
+
+  const minutes = `${new Date(data * 1000).getMinutes()}`.padStart(2, 0);
+
+  return `${hours}:${minutes}`;
 }

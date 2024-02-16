@@ -16,35 +16,54 @@ body {
   font-weight: 400;
   color: #0f172a;
   box-sizing: border-box;
-  height: 100vh;
-  background-image: url(img/main-light.jpg);
-  background-repeat: repeat-x;
-  background-position: center;
+  background-color: #dbd4d4;
   display: flex;
   justify-content: center;
 }
 
-.weather-card {
-  background-color: rgba(255, 255, 255, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 12px;
-  padding: 3.2rem;
-  position: relative;
+ul {
+  list-style: none;
 }
 
-.theme {
-  background-color: #fff;
-  position: fixed;
-  top: 1.6rem;
-  left: 1.6rem;
-  cursor: pointer;
+li {
+  margin-top: 1.2rem;
+}
+
+.weather-card {
+  max-width: 56rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  align-items: center;
+  border-radius: 12px;
+  padding: 6.4rem 3.2rem 3.2rem;
+  position: relative;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url(img/main-light.jpg);
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.4);
+}
+
+.heading-primary,
+.heading-secondary {
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+.heading-secondary {
+  margin-bottom: 0;
 }
 
 .date-time {
   color: #0f172a;
+  margin-bottom: 1.6rem;
 }
 .date {
   display: inline-block;
@@ -91,6 +110,15 @@ body {
   gap: 8rem;
 }
 
+.sun {
+  padding: 0 8rem 0;
+}
+
+.content {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
 .short-desc {
   text-align: center;
   font-weight: 700;
@@ -129,22 +157,34 @@ body {
 }
 
 .sun-position {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1.6rem;
 }
 
 .popup {
   display: none;
-  width: 80%;
+  width: 90%;
   border-radius: 12px;
   background-color: #fa456f;
   position: absolute;
-  top: 32%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 8rem 1.6rem;
   text-align: center;
   font-size: 1.8rem;
   text-transform: uppercase;
+}
+
+.theme {
+  background-color: #fff;
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  cursor: pointer;
 }
 
 .dark {
